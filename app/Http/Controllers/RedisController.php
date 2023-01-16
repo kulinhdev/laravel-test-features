@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Redis;
 
 class RedisController extends Controller
@@ -25,13 +26,16 @@ class RedisController extends Controller
         return redirect()->back()->with('success', 'Key ' . $key . ' has been deleted');
     }
 
-    public function test()
+    public function cacheKey($key)
     {
-        Redis::set('name1', 'Taylor');
+        $value = Cache::get('cache-test');
 
-        $values = Redis::get('name');
+        if (!$value) {
+            $value = 'test value';
+            Cache::put('cache-test', $value, 60);
+        }
 
-        dd($values);
+        dd($value);
     }
 
 }
