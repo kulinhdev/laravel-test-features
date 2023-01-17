@@ -19,7 +19,7 @@ class QueueController extends Controller
             'from_name' => 'Sender Name',
             'to' => 'receiver@example.com',
             'subject' => 'Testing the Queue',
-            'message' => 'Here goes all message body.'
+            'message' => 'Message send from to you.'
         ];
 
         SendEmail::dispatch($details)->onQueue($this->queueName);
