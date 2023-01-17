@@ -28,11 +28,24 @@ class RedisController extends Controller
 
     public function cacheKey($key)
     {
-        $value = Cache::get('cache-test');
+        $value = Cache::get($key);
+
+        // => Retrieve & Default
+        // $value = Cache::get('key', function () {
+        //     return DB::table( /* ... */)->get();
+        // });
+
+        // => Retrieve & Store
+        // $value = Cache::remember('users', $seconds, function () {
+        //     return DB::table('users')->get();
+        // });
+
+        // => Retrieve & Delete
+        // $value = Cache::pull('key');
 
         if (!$value) {
-            $value = 'test value';
-            Cache::put('cache-test', $value, 60);
+            $value = 'Cache test ...!';
+            Cache::put($key, $value, 60);
         }
 
         dd($value);

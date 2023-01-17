@@ -1,6 +1,7 @@
 <?php
-
 use Illuminate\Support\Facades\Route;
+
+use App\Http\Controllers\QueueController;
 use App\Http\Controllers\RedisController;
 
 /*
@@ -22,6 +23,8 @@ Route::get('/redis/set/{key}/{value}', [RedisController::class, 'setKey']);
 Route::get('/redis/get/{key}', [RedisController::class, 'getKey']);
 Route::get('/redis/delete/{key}', [RedisController::class, 'deleteKey']);
 Route::get('/redis/cacheKey/{key}', [RedisController::class, 'cacheKey']);
+
+Route::get('/jobs/testQueue', [QueueController::class, 'testQueue']);
 
 Route::middleware([
     'auth:sanctum',
