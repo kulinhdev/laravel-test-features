@@ -3,8 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Jobs\SendEmail;
+use App\Mail\SendMail;
 use Illuminate\Http\Request;
 use Illuminate\Mail\Mailable;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Mail;
 
@@ -15,11 +17,11 @@ class QueueController extends Controller
     public function testQueue()
     {
         $details = [
-            'from' => 'sender@example.com',
-            'from_name' => 'Sender Name',
-            'to' => 'receiver@example.com',
-            'subject' => 'Testing the Queue',
-            'message' => 'Here goes all message body.'
+            'from_name' => 'KuLinh Dev',
+            'to' => 'phamlinhaz229@gmail.com',
+            'to_name' => 'Pham Ngoc Linh',
+            'subject' => 'Testing send Mail and Queue',
+            'message' => 'Have a nice day ...!'
         ];
 
         SendEmail::dispatch($details)->onQueue($this->queueName);
@@ -28,15 +30,7 @@ class QueueController extends Controller
 
     public function sendMailProcess(array $details)
     {
-        // $email = new Mailable();
-        // $email->from($details['from'], $details['from_name']);
-        // $email->to($details['to']);
-        // $email->subject($details['subject']);
-        // Mail::send($details['view'], $details['data'], function ($message) use ($email) {
-        //     $message->from($email->from[0], $email->from[1])
-        //         ->to($email->to[0])
-        //         ->subject($email->subject);
-        // });
+        Mail::to($details['to'])->send(new SendMail($details));
 
         writeLog("Job send mail success to: " . $details['to']);
     }
