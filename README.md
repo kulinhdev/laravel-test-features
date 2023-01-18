@@ -22,3 +22,12 @@
 
 - Exec container
     docker exec -it container-name sh
+
+- Supervisor
+    /usr/bin/supervisorctl -h
+
+    supervisorctl reread
+ 
+    supervisorctl update
+    
+    supervisorctl start horizon

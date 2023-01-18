@@ -9,6 +9,7 @@ if (!function_exists('writeLog')) {
             touch($logFile);
         }
 
+        $data = '';
         if (!empty($context))
             $data = print_r($context, true);
 
