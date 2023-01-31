@@ -18,7 +18,7 @@ class QueueController extends Controller
     {
         $details = [
             'from_name' => 'KuLinh Dev',
-            'to' => 'phamlinhaz229@gmail.com',
+            'to' => 'linhpn3@smartosc.com',
             'to_name' => 'Pham Ngoc Linh',
             'subject' => 'Testing send Mail and Queue',
             'message' => 'Have a nice day ...!'

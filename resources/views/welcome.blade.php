@@ -405,6 +405,7 @@
 </head>
 
 <body class="antialiased">
+    {{ Debugbar::info("info!") . Debugbar::error("error!") . Debugbar::warning("warning!") }}
     <div
         class="relative flex items-top justify-center min-h-screen bg-gray-100 dark:bg-gray-900 sm:items-center py-4 sm:pt-0">
         @if (Route::has('login'))
